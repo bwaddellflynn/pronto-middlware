@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bwadd\\Projects\\Pronto.Middleware\\Pronto.Middleware.csproj": {}
+    "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Pronto.Middleware.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bwadd\\Projects\\Pronto.Middleware\\Pronto.Middleware.csproj": {
+    "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Pronto.Middleware.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bwadd\\Projects\\Pronto.Middleware\\Pronto.Middleware.csproj",
+        "projectUniqueName": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Pronto.Middleware.csproj",
         "projectName": "Pronto.Middleware",
-        "projectPath": "C:\\Users\\bwadd\\Projects\\Pronto.Middleware\\Pronto.Middleware.csproj",
+        "projectPath": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Pronto.Middleware.csproj",
         "packagesPath": "C:\\Users\\bwadd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bwadd\\Projects\\Pronto.Middleware\\obj\\",
+        "outputPath": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bwadd\\AppData\\Roaming\\NuGet\\NuGet.Config",

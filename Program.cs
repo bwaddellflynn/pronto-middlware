@@ -72,12 +72,12 @@ builder.Services.AddAuthentication(options =>
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllCorsPolicy", policy =>
+    options.AddPolicy("MyCorsPolicy", builder =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials(); // Be cautious with AllowCredentials when allowing all origins.
+        builder.WithOrigins("https://red-forest-020d52110.4.azurestaticapps.net")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials(); // Use with caution, only if necessary
     });
 });
 
@@ -102,7 +102,7 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
 
-app.UseCors("AllowAllCorsPolicy");
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
