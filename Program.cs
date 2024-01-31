@@ -72,7 +72,7 @@ builder.Services.AddAuthentication(options =>
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("MyCorsPolicy", builder =>
+    options.AddPolicy("CorsPolicy", builder =>
     {
         builder.WithOrigins("https://red-forest-020d52110.4.azurestaticapps.net")
                .AllowAnyHeader()
