@@ -74,7 +74,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
     {
-        builder.WithOrigins("https://red-forest-020d52110.4.azurestaticapps.net", "https://pronto.perbyte.me/")
+        builder.WithOrigins("https://red-forest-020d52110.4.azurestaticapps.net", "https://pronto.perbyte.me")
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials(); // Use with caution, only if necessary
