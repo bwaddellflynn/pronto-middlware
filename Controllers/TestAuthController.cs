@@ -11,7 +11,7 @@ namespace Pronto.Middleware.Controllers
         [HttpGet("login")]
         public IActionResult TestLogin()
         {
-            var token = "njjT8CeWB2ARWV8slT1-~1O3JBWXpDHarm4D-BF.XR-vB2bSpb-I835Meg3zMRxV";
+            var token = "z8Y0yy9s0w_Ylh967TpyLM0Zn.44sxi9p8~nQSs_U8ASLwUk7RURBuHo5ztkIKnL";
             return Ok(new { Token = token });
         }
 
