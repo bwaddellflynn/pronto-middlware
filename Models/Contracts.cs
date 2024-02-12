@@ -5,7 +5,9 @@ namespace Pronto.Middleware.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public CompanyInfo Company { get; set; }
-        public string Frequency { get; set; } 
+        public string Frequency { get; set; }
+
+        public string DSA_Agreement { get; set; }
 
         public class CompanyInfo
         {

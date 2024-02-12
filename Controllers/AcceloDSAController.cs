@@ -43,7 +43,6 @@ namespace Pronto.Middleware.Controllers
             var contracts = await GetContractsFromAcceloAsync(accessToken);
             return Ok(contracts);
         }
-
         private async Task<List<Contract>> GetContractsFromAcceloAsync(string accessToken)
         {
             var client = _httpClientFactory.CreateClient();
@@ -60,15 +59,19 @@ namespace Pronto.Middleware.Controllers
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse>(jsonResponse);
 
-            // Filter contracts where title starts with "DSA"
-            var dsaContracts = acceloResponse.Response
-                .Where(contractResp => contractResp.Title.StartsWith(""))
-                .ToList();
-
             var contracts = new List<Contract>();
 
-            foreach (var contractResponse in dsaContracts)
+            foreach (var contractResponse in acceloResponse.Response)
             {
+                // Fetch DSA Agreement value for each contract
+                var dsaAgreement = await GetDSA_AgreementAsync(accessToken, int.Parse(contractResponse.Id));
+
+                // Filter contracts based on DSA Agreement value
+                if (dsaAgreement != "Yes")
+                {
+                    continue;
+                }
+
                 var contract = new Contract
                 {
                     Id = int.Parse(contractResponse.Id),
@@ -124,6 +127,33 @@ namespace Pronto.Middleware.Controllers
             public string FieldName { get; set; }
             public string Value { get; set; }
         }
+        public class CustomFieldsResponse
+        {
+            [JsonProperty("response")]
+            public List<CustomField> Response { get; set; }
+
+            public class CustomField
+            {
+                [JsonProperty("field_name")]
+                public string FieldName { get; set; }
+
+                [JsonProperty("value")]
+                public string Value { get; set; }
+
+                [JsonProperty("field_type")]
+                public string FieldType { get; set; }
+
+                [JsonProperty("link_type")]
+                public string LinkType { get; set; }
+
+                [JsonProperty("value_type")]
+                public string ValueType { get; set; }
+
+                [JsonProperty("id")]
+                public string Id { get; set; }
+            }
+        }
+
 
         private async Task<string> GetFrequencyAsync(string accessToken, int contractId)
         {
@@ -141,6 +171,28 @@ namespace Pronto.Middleware.Controllers
             var data = JsonConvert.DeserializeObject<ProfileResponse>(jsonResponse);
 
             return data.Response.FirstOrDefault(item => item.FieldName == "Reporting Frequency")?.Value;
+        }
+
+        private async Task<string> GetDSA_AgreementAsync(string accessToken, int contractId)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.GetAsync($"{_baseUrl}contracts/{contractId}/profiles/values"); // Adjusted endpoint
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError($"Failed to fetch custom fields for contract {contractId}. Status code: {response.StatusCode}");
+                return null; // Return null if the API call was unsuccessful
+            }
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<CustomFieldsResponse>(jsonResponse);
+
+            // To find a specific field value, like "DSA Agreement"
+            var dsaAgreementValue = data.Response.FirstOrDefault(field => field.FieldName == "DSA Agreement")?.Value;
+
+            return dsaAgreementValue; // Return the value found, or null if not found
         }
 
         [HttpGet("periods")]
