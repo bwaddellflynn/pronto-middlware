@@ -8,6 +8,7 @@ using Pronto.Middleware.Models;
 using System.Linq;
 using static Pronto.Middleware.Controllers.AcceloGeneralController;
 using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace Pronto.Middleware.Controllers
 {
@@ -24,7 +25,7 @@ namespace Pronto.Middleware.Controllers
             _httpClientFactory = httpClientFactory;
             _logger = logger;
         }
-
+        #region Contracts
         [HttpGet("contracts")]
         public async Task<IActionResult> GetContracts()
         {
@@ -63,15 +64,19 @@ namespace Pronto.Middleware.Controllers
 
             foreach (var contractResponse in acceloResponse.Response)
             {
-                // Fetch DSA Agreement value for each contract
-                var dsaAgreement = await GetDSA_AgreementAsync(accessToken, int.Parse(contractResponse.Id));
+                // Use the consolidated method to fetch "DSA Agreement" as a CustomField for each contract
+                var dsaAgreementCustomField = await GetCustomFieldAsync(accessToken, contractResponse.Id.ToString(), "DSA Agreement");
 
-                // Filter contracts based on DSA Agreement value
-                if (dsaAgreement != "Yes")
+                // Continue only if "DSA Agreement" is "Yes"
+                if (dsaAgreementCustomField == null || dsaAgreementCustomField.Value != "Yes")
                 {
                     continue;
                 }
 
+                // Use the consolidated method to fetch "Reporting Frequency" as a CustomField for each contract
+                var reportingFrequencyCustomField = await GetCustomFieldAsync(accessToken, contractResponse.Id.ToString(), "Reporting Frequency");
+
+                // Construct the contract object
                 var contract = new Contract
                 {
                     Id = int.Parse(contractResponse.Id),
@@ -83,79 +88,19 @@ namespace Pronto.Middleware.Controllers
                                     Id = int.Parse(b.Id),
                                     Name = b.Title
                                 })
-                                .FirstOrDefault()
+                                .FirstOrDefault(),
+                    // Set the CustomField properties
+                    Frequency = reportingFrequencyCustomField,
+                    DSA_Agreement = dsaAgreementCustomField
                 };
 
-                // Fetch and add frequency information
-                contract.Frequency = await GetFrequencyAsync(accessToken, contract.Id);
                 contracts.Add(contract);
             }
 
             return contracts;
         }
 
-        public class AcceloApiResponse
-        {
-            [JsonProperty("response")]
-            public List<ContractResponse> Response { get; set; }
-
-            public class ContractResponse
-            {
-                public string Id { get; set; }
-                public string Title { get; set; }
-                [JsonProperty("breadcrumbs")]
-                public List<Breadcrumb> Breadcrumbs { get; set; }
-            }
-
-            public class Breadcrumb
-            {
-                public string Table { get; set; }
-                public string Id { get; set; }
-                public string Title { get; set; }
-            }
-        }
-
-        private class ProfileResponse
-        {
-            [JsonProperty("response")]
-            public List<ProfileFieldValue> Response { get; set; }
-        }
-
-        private class ProfileFieldValue
-        {
-            [JsonProperty("field_name")]
-            public string FieldName { get; set; }
-            public string Value { get; set; }
-        }
-        public class CustomFieldsResponse
-        {
-            [JsonProperty("response")]
-            public List<CustomField> Response { get; set; }
-
-            public class CustomField
-            {
-                [JsonProperty("field_name")]
-                public string FieldName { get; set; }
-
-                [JsonProperty("value")]
-                public string Value { get; set; }
-
-                [JsonProperty("field_type")]
-                public string FieldType { get; set; }
-
-                [JsonProperty("link_type")]
-                public string LinkType { get; set; }
-
-                [JsonProperty("value_type")]
-                public string ValueType { get; set; }
-
-                [JsonProperty("id")]
-                public string Id { get; set; }
-            }
-        }
-
-
-        private async Task<string> GetFrequencyAsync(string accessToken, int contractId)
+        private async Task<CustomField> GetCustomFieldAsync(string accessToken, string contractId, string fieldName)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -164,37 +109,24 @@ namespace Pronto.Middleware.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return null;
-            }
-
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<ProfileResponse>(jsonResponse);
-
-            return data.Response.FirstOrDefault(item => item.FieldName == "Reporting Frequency")?.Value;
-        }
-
-        private async Task<string> GetDSA_AgreementAsync(string accessToken, int contractId)
-        {
-            var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            var response = await client.GetAsync($"{_baseUrl}contracts/{contractId}/profiles/values"); // Adjusted endpoint
-
-            if (!response.IsSuccessStatusCode)
-            {
                 _logger.LogError($"Failed to fetch custom fields for contract {contractId}. Status code: {response.StatusCode}");
-                return null; // Return null if the API call was unsuccessful
+                return null;
             }
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<CustomFieldsResponse>(jsonResponse);
 
-            // To find a specific field value, like "DSA Agreement"
-            var dsaAgreementValue = data.Response.FirstOrDefault(field => field.FieldName == "DSA Agreement")?.Value;
-
-            return dsaAgreementValue; // Return the value found, or null if not found
+            // Return the entire CustomField object, not just the value
+            return data.Response.FirstOrDefault(field => field.FieldName == fieldName);
         }
 
+        #endregion
+
+        #region Update Frequency
+
+        #endregion
+
+        #region Periods
         [HttpGet("periods")]
         public async Task<IActionResult> GetContractPeriods(int contractId, long startDate, long endDate)
         {
@@ -253,74 +185,9 @@ namespace Pronto.Middleware.Controllers
             return periods;
         }
 
+        #endregion
 
-        public class PeriodsApiResponse
-        {
-            [JsonProperty("response")]
-            public PeriodsResponse Response { get; set; }
-        }
-
-        public class PeriodsResponse
-        {
-            [JsonProperty("periods")]
-            public List<ContractPeriod> Periods { get; set; }
-        }
-
-        public class ContractPeriod
-        {
-            [JsonProperty("id")]
-            public int Id { get; set; }
-
-            [JsonProperty("usage")]
-            public double Usage { get; set; }
-
-            [JsonProperty("total")]
-            public int Total { get; set; }
-
-            [JsonProperty("date_commenced")]
-            public long Date_Commenced { get; set; }
-
-            [JsonProperty("date_closed")]
-            public long? Date_Closed { get; set; }
-
-            // Other properties as per JSON structure
-
-            [JsonProperty("time_allocations")]
-            public List<TimeAllocation> TimeAllocations { get; set; }
-        }
-
-        public class TimeAllocation
-        {
-            public string Against_Type { get; set; }
-            public string Against_Title { get; set; }
-            public int Against_Id { get; set; }
-            public int Billable { get; set; }
-            public int Nonbillable { get; set; }
-            public int Period_Id { get; set; }
-        }
-
-
-        public class TimeAllocationResponse
-        {
-            [JsonProperty("against_type")]
-            public string Against_Type { get; set; }
-
-            [JsonProperty("against_title")]
-            public string Against_Title { get; set; }
-
-            [JsonProperty("against_id")]
-            public string Against_Id { get; set; }
-
-            [JsonProperty("billable")]
-            public string Billable { get; set; }
-
-            [JsonProperty("nonbillable")]
-            public string Nonbillable { get; set; }
-
-            [JsonProperty("period_id")]
-            public string Period_Id { get; set; }
-        }
-
+        #region Issues
         [HttpGet("issues")]
         public async Task<IActionResult> GetIssues(string issueId, long startDate, long endDate)
         {
@@ -338,7 +205,7 @@ namespace Pronto.Middleware.Controllers
             var issues = await GetIssuesFromAcceloAsync(accessToken, issueId, startDate, endDate);
             return Ok(issues);
         }
-        private async Task<List<Issue>> GetIssuesFromAcceloAsync(string accessToken, string  issueId, long startDate, long endDate)
+        private async Task<List<AcceloGeneralController.Issue>> GetIssuesFromAcceloAsync(string accessToken, string issueId, long startDate, long endDate)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -353,12 +220,12 @@ namespace Pronto.Middleware.Controllers
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError("Accelo API request failed: {StatusCode} - {Response}", response.StatusCode, jsonResponse);
-                return new List<Issue>();
+                return new List<AcceloGeneralController.Issue>();
             }
 
-            var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<IssueResponse>>(jsonResponse);
+            var acceloResponse = JsonConvert.DeserializeObject<AcceloGeneralController.AcceloApiResponse<AcceloGeneralController.IssueResponse>>(jsonResponse);
 
-            var issues = acceloResponse.Response.Select(issueResp => new Issue
+            var issues = acceloResponse.Response.Select(issueResp => new AcceloGeneralController.Issue
             {
                 Id = int.Parse(issueResp.Id),
                 Title = issueResp.Title,
@@ -373,39 +240,6 @@ namespace Pronto.Middleware.Controllers
             return issues;
         }
 
-        public class AcceloApiResponse<T>
-        {
-            public List<T> Response { get; set; }
-        }
-
-        public class Issue
-        {
-            public int Id { get; set; }
-            public string Title { get; set; }
-            public int Against_Id { get; set; }
-            public string Resolution_Detail { get; set; }
-            public string Standing { get; set; }
-            public long Date_Opened { get; set; }
-            public int Billable_Seconds { get; set; }
-            public string Class { get; set; }
-        }
-
-        public class ClassResponse
-        {
-            public string Id { get; set; }
-            public string Title { get; set; }
-        }
-
-        public class IssueResponse
-        {
-            public string Id { get; set; }
-            public string Title { get; set; }
-            public string Against_Id { get; set; }
-            public string Resolution_Detail { get; set; }
-            public string Standing { get; set; }
-            public string Date_Opened { get; set; }
-            public string Billable_Seconds { get; set; }
-            public ClassResponse Class { get; set; }
-        }
+        #endregion
     }
 }

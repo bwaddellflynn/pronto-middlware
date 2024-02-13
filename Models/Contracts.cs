@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using Pronto.Middleware.Models;
+
 namespace Pronto.Middleware.Models
 {
     public class Contract
@@ -5,14 +8,35 @@ namespace Pronto.Middleware.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public CompanyInfo Company { get; set; }
-        public string Frequency { get; set; }
 
-        public string DSA_Agreement { get; set; }
+        public CustomField Frequency {  get; set; }
+        public CustomField DSA_Agreement { get; set; }
 
         public class CompanyInfo
         {
             public int Id { get; set; }
             public string Name { get; set; }
+        }
+    }
+
+    public class AcceloApiResponse
+    {
+        [JsonProperty("response")]
+        public List<ContractResponse> Response { get; set; }
+
+        public class ContractResponse
+        {
+            public string Id { get; set; }
+            public string Title { get; set; }
+            [JsonProperty("breadcrumbs")]
+            public List<Breadcrumb> Breadcrumbs { get; set; }
+        }
+
+        public class Breadcrumb
+        {
+            public string Table { get; set; }
+            public string Id { get; set; }
+            public string Title { get; set; }
         }
     }
 }
