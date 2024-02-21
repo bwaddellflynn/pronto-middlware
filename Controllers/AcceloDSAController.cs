@@ -50,48 +50,55 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             // Fetch contracts
-            var response = await client.GetAsync($"{_baseUrl}contracts?_filters=standing(active)&_limit=100&_fields=breadcrumbs");
-
-            if (!response.IsSuccessStatusCode)
+            var contractsResponse = await client.GetAsync($"{_baseUrl}contracts?_filters=standing(active)&_limit=100&_fields=breadcrumbs,owner_affiliation()");
+            if (!contractsResponse.IsSuccessStatusCode)
             {
                 return new List<Contract>();
             }
 
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse>(jsonResponse);
+            var contractsJsonResponse = await contractsResponse.Content.ReadAsStringAsync();
+            var acceloContractsResponse = JsonConvert.DeserializeObject<AcceloApiResponse>(contractsJsonResponse);
+
+            // Fetch affiliations separately
+            var affiliations = await GetAffiliationsFromAcceloAsync(accessToken);
 
             var contracts = new List<Contract>();
 
-            foreach (var contractResponse in acceloResponse.Response)
+            foreach (var contractResponse in acceloContractsResponse.Response)
             {
-                // Use the consolidated method to fetch "DSA Agreement" as a CustomField for each contract
                 var dsaAgreementCustomField = await GetCustomFieldAsync(accessToken, contractResponse.Id.ToString(), "DSA Agreement");
-
-                // Continue only if "DSA Agreement" is "Yes"
                 if (dsaAgreementCustomField == null || dsaAgreementCustomField.Value != "Yes")
                 {
                     continue;
                 }
 
-                // Use the consolidated method to fetch "Reporting Frequency" as a CustomField for each contract
                 var reportingFrequencyCustomField = await GetCustomFieldAsync(accessToken, contractResponse.Id.ToString(), "Reporting Frequency");
 
-                // Construct the contract object
+                var companyInfo = contractResponse.Breadcrumbs
+                    .Where(b => b.Table == "company")
+                    .Select(b => new Contract.CompanyInfo
+                    {
+                        Id = int.Parse(b.Id),
+                        Name = b.Title
+                    })
+                    .FirstOrDefault();
+
+                // Find the affiliation(s) for this contract's company
+                var companyAffiliations = affiliations
+                    .Where(a => a.Company == companyInfo?.Id.ToString())
+                    .ToList(); // Assuming Company property in Affiliation class matches CompanyInfo.Id
+
+                // For simplicity, let's assume we're only interested in the first affiliation
+                var affiliation = companyAffiliations.FirstOrDefault();
+
                 var contract = new Contract
                 {
                     Id = int.Parse(contractResponse.Id),
                     Title = contractResponse.Title,
-                    Company = contractResponse.Breadcrumbs
-                                .Where(b => b.Table == "company")
-                                .Select(b => new Contract.CompanyInfo
-                                {
-                                    Id = int.Parse(b.Id),
-                                    Name = b.Title
-                                })
-                                .FirstOrDefault(),
-                    // Set the CustomField properties
+                    Company = companyInfo,
                     Frequency = reportingFrequencyCustomField,
-                    DSA_Agreement = dsaAgreementCustomField
+                    DSA_Agreement = dsaAgreementCustomField,
+                    Affiliation = affiliation // Set the Affiliation property
                 };
 
                 contracts.Add(contract);
@@ -99,6 +106,7 @@ namespace Pronto.Middleware.Controllers
 
             return contracts;
         }
+
 
         private async Task<CustomField> GetCustomFieldAsync(string accessToken, string contractId, string fieldName)
         {
@@ -116,8 +124,24 @@ namespace Pronto.Middleware.Controllers
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<CustomFieldsResponse>(jsonResponse);
 
-            // Return the entire CustomField object, not just the value
             return data.Response.FirstOrDefault(field => field.FieldName == fieldName);
+        }
+
+        private async Task<List<Affiliation>> GetAffiliationsFromAcceloAsync(string accessToken)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.GetAsync($"{_baseUrl}affiliations?_fields=_ALL,contact()");
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError($"Failed to fetch affiliations. Status code: {response.StatusCode}");
+                return new List<Affiliation>();
+            }
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var affiliationsResponse = JsonConvert.DeserializeObject<AffiliationResponse>(jsonResponse);
+            return affiliationsResponse.Response;
         }
 
         #endregion
