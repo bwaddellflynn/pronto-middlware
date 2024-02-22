@@ -49,8 +49,8 @@ namespace Pronto.Middleware.Controllers
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            // Fetch contracts
-            var contractsResponse = await client.GetAsync($"{_baseUrl}contracts?_filters=standing(active)&_limit=100&_fields=breadcrumbs,owner_affiliation()");
+            // Ensure owner_affiliation field is correctly specified in the request
+            var contractsResponse = await client.GetAsync($"{_baseUrl}contracts?_filters=standing(active)&_limit=100&_fields=breadcrumbs,owner_affiliation");
             if (!contractsResponse.IsSuccessStatusCode)
             {
                 return new List<Contract>();
@@ -58,9 +58,6 @@ namespace Pronto.Middleware.Controllers
 
             var contractsJsonResponse = await contractsResponse.Content.ReadAsStringAsync();
             var acceloContractsResponse = JsonConvert.DeserializeObject<AcceloApiResponse>(contractsJsonResponse);
-
-            // Fetch affiliations separately
-            var affiliations = await GetAffiliationsFromAcceloAsync(accessToken);
 
             var contracts = new List<Contract>();
 
@@ -83,22 +80,24 @@ namespace Pronto.Middleware.Controllers
                     })
                     .FirstOrDefault();
 
-                // Find the affiliation(s) for this contract's company
-                var companyAffiliations = affiliations
-                    .Where(a => a.Company == companyInfo?.Id.ToString())
-                    .ToList(); // Assuming Company property in Affiliation class matches CompanyInfo.Id
+                // Directly use the owner_affiliation from the contract response
+                var ownerAffiliation = new OwnerAffiliation
+                {
+                    Id = contractResponse.OwnerAffiliationId,
+                };
 
-                // For simplicity, let's assume we're only interested in the first affiliation
-                var affiliation = companyAffiliations.FirstOrDefault();
+                var affiliation = await GetAffiliationByIdAsync(accessToken, ownerAffiliation.Id);
 
                 var contract = new Contract
                 {
                     Id = int.Parse(contractResponse.Id),
                     Title = contractResponse.Title,
                     Company = companyInfo,
+                    OwnerAffiliation = ownerAffiliation, // Set the owner affiliation directly
                     Frequency = reportingFrequencyCustomField,
                     DSA_Agreement = dsaAgreementCustomField,
-                    Affiliation = affiliation // Set the Affiliation property
+                    Affiliation = affiliation,
+
                 };
 
                 contracts.Add(contract);
@@ -127,21 +126,51 @@ namespace Pronto.Middleware.Controllers
             return data.Response.FirstOrDefault(field => field.FieldName == fieldName);
         }
 
-        private async Task<List<Affiliation>> GetAffiliationsFromAcceloAsync(string accessToken)
+        private async Task<Affiliation> GetAffiliationByIdAsync(string accessToken, string affiliationId)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await client.GetAsync($"{_baseUrl}affiliations?_fields=_ALL,contact()");
+            var response = await client.GetAsync($"{_baseUrl}affiliations/{affiliationId}?_fields=_ALL,contact()");
             if (!response.IsSuccessStatusCode)
             {
-                _logger.LogError($"Failed to fetch affiliations. Status code: {response.StatusCode}");
-                return new List<Affiliation>();
+                _logger.LogError($"Failed to fetch affiliation with ID {affiliationId}. Status code: {response.StatusCode}");
+                return null;
             }
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            var affiliationsResponse = JsonConvert.DeserializeObject<AffiliationResponse>(jsonResponse);
-            return affiliationsResponse.Response;
+
+            // Step 1: Deserialize the JSON response into the AcceloAffiliationResponse model
+            var acceloAffiliationResponse = JsonConvert.DeserializeObject<AcceloAffiliationResponse>(jsonResponse);
+
+            // Step 2: Map the AcceloAffiliationResponse data to the Affiliation model
+            var affiliation = MapToAffiliationModel(acceloAffiliationResponse.Data);
+
+            return affiliation;
+        }
+
+        // Helper method to map AcceloAffiliationResponse data to the Affiliation model
+        private Affiliation MapToAffiliationModel(AffiliationResponse data)
+        {
+            if (data == null) return null;
+
+            return new Affiliation
+            {
+                Id = data.Id,
+                Company = data.Company,
+                Email = data.Email,
+                Phone = data.Phone,
+                Mobile = data.Mobile,
+                Position = data.Position,
+                InvoiceMethod = data.InvoiceMethod,
+                Contact = data.Contact != null ? new Contact
+                {
+                    Id = data.Contact.Id,
+                    FirstName = data.Contact.Firstname,
+                    Surname = data.Contact.Surname,
+                    Email = data.Contact.Email
+                } : null
+            };
         }
 
         #endregion

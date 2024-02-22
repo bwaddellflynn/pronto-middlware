@@ -3,13 +3,33 @@ using System.Collections.Generic;
 
 namespace Pronto.Middleware.Models
 {
-    public class AffiliationResponse
+    public class Affiliation
     {
-        [JsonProperty("response")]
-        public List<Affiliation> Response { get; set; }
+        public string Id { get; set; }
+        public string Company { get; set; }
+        public Contact Contact { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Mobile { get; set; }
+        public string Position { get; set; }
+        public string InvoiceMethod { get; set; }
     }
 
-    public class Affiliation
+    public class Contact
+    {
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+    }
+
+    public class AcceloAffiliationResponse
+    {
+        [JsonProperty("response")]
+        public AffiliationResponse Data { get; set; }
+    }
+
+    public class AffiliationResponse
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -18,7 +38,7 @@ namespace Pronto.Middleware.Models
         public string Company { get; set; }
 
         [JsonProperty("contact")]
-        public Contact Contact { get; set; }
+        public ContactResponse Contact { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }
@@ -32,12 +52,11 @@ namespace Pronto.Middleware.Models
         [JsonProperty("position")]
         public string Position { get; set; }
 
-        [JsonProperty("standing")]
-        public string Standing { get; set; }
-
+        [JsonProperty("invoice_method")]
+        public string InvoiceMethod { get; set; }
     }
 
-    public class Contact
+    public class ContactResponse
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -50,8 +69,5 @@ namespace Pronto.Middleware.Models
 
         [JsonProperty("email")]
         public string Email { get; set; }
-
-        [JsonProperty("mobile")]
-        public string Mobile { get; set; }
     }
 }
