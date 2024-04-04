@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z82Mm6gFZMNNlhFIGrpyakcJUhabdxecvNMqmP5k+O4irIpt9f5QD879L70NLZyvDZl5QjQ9Indob3g7i7dulA==",
+  "dgSpecHash": "wiN2374koyQdQsSXfSIzhXBqJWz0wNYxb+cbLxlwQVL9F1MPgh0OM6KJLJUMxQ6e0twXL3MKeifmFb0U5S3Jeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Pronto.Middleware.csproj",
   "expectedPackageFiles": [
@@ -47,11 +47,7 @@
     "C:\\Users\\bwadd\\.nuget\\packages\\system.security.cryptography.xml\\4.5.0\\system.security.cryptography.xml.4.5.0.nupkg.sha512",
     "C:\\Users\\bwadd\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\bwadd\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
-    "C:\\Users\\bwadd\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
-    "C:\\Users\\bwadd\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\bwadd\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\bwadd\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\bwadd\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+    "C:\\Users\\bwadd\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

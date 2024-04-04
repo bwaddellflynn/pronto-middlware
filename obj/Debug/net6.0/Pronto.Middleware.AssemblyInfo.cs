@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pronto.Middleware")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd94a6804d0f1b2a9c2c6edfafd471e00bbd36b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7768115174150989f0a19057903dfb0a33a608b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pronto.Middleware")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pronto.Middleware")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

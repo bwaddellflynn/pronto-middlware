@@ -1,0 +1,238 @@
+[
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloDSAController",
+    "Method": "GetContracts",
+    "RelativePath": "AcceloDSA/contracts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloDSAController",
+    "Method": "GetIssues",
+    "RelativePath": "AcceloDSA/issues",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "issueId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloDSAController",
+    "Method": "GetContractPeriods",
+    "RelativePath": "AcceloDSA/periods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contractId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloGeneralController",
+    "Method": "GetCompanies",
+    "RelativePath": "AcceloGeneral/companies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloGeneralController",
+    "Method": "GetIssues",
+    "RelativePath": "AcceloGeneral/issues",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
+    "Method": "Callback",
+    "RelativePath": "Auth/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "state",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "error",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "error_description",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "Auth/login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "Auth/logout",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
+    "Method": "GetAuthStatus",
+    "RelativePath": "Auth/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.TestAuthController",
+    "Method": "TestLogin",
+    "RelativePath": "TestAuth/login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.TestAuthController",
+    "Method": "TestLogout",
+    "RelativePath": "TestAuth/logout",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AccountController",
+    "Method": "Callback",
+    "RelativePath": "callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "state",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AccountController",
+    "Method": "Logout",
+    "RelativePath": "logout",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pronto.Middleware.Controllers.AccountController",
+    "Method": "Status",
+    "RelativePath": "status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
