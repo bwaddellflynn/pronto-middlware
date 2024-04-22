@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.OpenApi.Models;
+using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,11 +11,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Register IHttpClientFactory
+builder.Services.AddHttpClient();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.None;
 });
 
 // Configure OAuth authentication
@@ -23,7 +31,12 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.LogoutPath = "/logout";
+    options.AccessDeniedPath = "/accessdenied"; // Redirect to this path when access is denied.
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
+    options.Cookie.HttpOnly = true; 
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
+    options.Cookie.SameSite = SameSiteMode.None; 
+    options.SlidingExpiration = true; // Reset the cookie expiration time if a user is active.
 })
 .AddOAuth("Accelo", options =>
 {
@@ -43,7 +56,6 @@ builder.Services.AddAuthentication(options =>
 
             context.HttpContext.Session.SetString("AccessToken", accessToken);
 
-            // Directly log the access token
             context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>().LogInformation($"OAuth login successful. AccessToken: {accessToken}");
 
             var claims = new List<Claim>
@@ -65,7 +77,7 @@ builder.Services.AddAuthentication(options =>
         },
         OnRemoteFailure = context =>
         {
-            context.Response.Redirect("/error?message=" + context.Failure.Message);
+            context.Response.Redirect("/error?message=" + Uri.EscapeDataString(context.Failure.Message));
             context.HandleResponse();
             return Task.CompletedTask;
         }
@@ -81,35 +93,31 @@ builder.Services.AddCors(options =>
                             "http://localhost:8080",
                             "https://localhost:8080",
                             "https://pronto.com:8080")
-               .AllowAnyHeader()
                .AllowAnyMethod()
+               .AllowAnyHeader()
                .AllowCredentials();
     });
 });
 
+
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/error");
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("CorsPolicy");
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.UseCors("CorsPolicy");
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
 
 app.UseEndpoints(endpoints =>
 {
@@ -118,4 +126,4 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
-app.Run(); 
+app.Run();

@@ -3,14 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Pronto.Middleware.Models;
-using System.Linq;
-using static Pronto.Middleware.Controllers.AcceloGeneralController;
-using Microsoft.Extensions.Logging;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 
 namespace Pronto.Middleware.Controllers
 {
@@ -26,19 +19,6 @@ namespace Pronto.Middleware.Controllers
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
-        }
-
-        private async Task<string> GetAccessTokenAsync()
-        {
-            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            if (!authenticateResult.Succeeded || authenticateResult?.Ticket?.Properties?.Items == null)
-            {
-                _logger.LogError("Failed to authenticate or no authentication ticket found.");
-                return null;
-            }
-
-            authenticateResult.Ticket.Properties.Items.TryGetValue(".Token.access_token", out var accessToken);
-            return accessToken;
         }
 
         #region Contracts
