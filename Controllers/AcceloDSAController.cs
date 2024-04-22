@@ -3,12 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Pronto.Middleware.Models;
-using System.Linq;
-using static Pronto.Middleware.Controllers.AcceloGeneralController;
-using Microsoft.Extensions.Logging;
-using System.Text;
 
 namespace Pronto.Middleware.Controllers
 {
@@ -25,6 +20,7 @@ namespace Pronto.Middleware.Controllers
             _httpClientFactory = httpClientFactory;
             _logger = logger;
         }
+
         #region Contracts
         [HttpGet("contracts")]
         public async Task<IActionResult> GetContracts()

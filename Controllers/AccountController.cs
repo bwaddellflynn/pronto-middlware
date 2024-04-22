@@ -15,7 +15,7 @@ namespace Pronto.Middleware.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
 
         [HttpGet]
-        [Route("auth/callback")]
+        [Route("/callback")]
         public async Task<IActionResult> Callback(string code, string state)
         {
             _logger.LogInformation("Callback endpoint called with code: {Code}", code);
