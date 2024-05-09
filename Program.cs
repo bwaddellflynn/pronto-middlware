@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -72,7 +73,8 @@ builder.Services.AddAuthentication(options =>
         },
         OnTicketReceived = context =>
         {
-            context.ReturnUri = "https://pronto.com:8080";
+            var returnUri = configuration["Startup:ReturnUri"];
+            context.ReturnUri = returnUri;
             return Task.CompletedTask;
         },
         OnRemoteFailure = context =>
