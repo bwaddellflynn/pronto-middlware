@@ -56,47 +56,24 @@ namespace Pronto.Middleware.Controllers
             return Ok(new { Token = token, IsAuthenticated = isAuthenticated });
         }
 
-        [HttpGet("statustest")]
-        public IActionResult GetAuthStatus()
-        {
-            _logger.LogInformation("Accessing GetAuthStatus endpoint");
-            _logger.LogInformation($"Session Token: {HttpContext.Session.GetString("AccessToken")}");
-            _logger.LogInformation($"User Identity Name: {User?.Identity?.Name}");
-            _logger.LogInformation($"Is Authenticated: {User.Identity.IsAuthenticated}");
-
-            if (User.Identity.IsAuthenticated)
-            {
-                return Ok(new { Authenticated = true, User = User.Identity.Name });
-            }
-            else
-            {
-                return Ok(new { Authenticated = false });
-            }
-        }
 
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
         {
+            // Clear the access token from the session
+            HttpContext.Session.Remove("AccessToken");
+
+            // Sign out the user
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Optionally clear the entire session
+            HttpContext.Session.Clear();  // Clearing the session explicitly
+
+            // Set no-cache headers to prevent the browser from caching sensitive data
+            Response.Headers.Add("Cache-Control", "no-store, max-age=0");
+
             return Redirect("/");
-        }
-
-        [HttpGet("set")]
-        public IActionResult SetSession()
-        {
-            // Set a test value in the session
-            HttpContext.Session.SetString("TestSessionKey", "TestSessionValue");
-            return Ok("Session value set.");
-        }
-
-        [HttpGet("get")]
-        public IActionResult GetSession()
-        {
-            // Retrieve the test value from the session
-            var sessionValue = HttpContext.Session.GetString("TestSessionKey");
-            var token = HttpContext.Session.GetString("AccessToken");
-            return Ok($"Session value: {sessionValue ?? "Not set"}{token ?? "No token"}");
         }
     }
 }

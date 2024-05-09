@@ -62,6 +62,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Pronto.Middleware.Controllers.AcceloDSAController",
+    "Method": "GetCurrentUserData",
+    "RelativePath": "AcceloDSA/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Pronto.Middleware.Controllers.AcceloGeneralController",
     "Method": "GetCompanies",
     "RelativePath": "AcceloGeneral/companies",
@@ -130,16 +140,6 @@
   },
   {
     "ContainingType": "Pronto.Middleware.Controllers.AuthController",
-    "Method": "GetSession",
-    "RelativePath": "Auth/get",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "Auth/login",
     "HttpMethod": "GET",
@@ -160,28 +160,8 @@
   },
   {
     "ContainingType": "Pronto.Middleware.Controllers.AuthController",
-    "Method": "SetSession",
-    "RelativePath": "Auth/set",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
     "Method": "GetTokenStatus",
     "RelativePath": "Auth/status",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Pronto.Middleware.Controllers.AuthController",
-    "Method": "GetAuthStatus",
-    "RelativePath": "Auth/statustest",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
