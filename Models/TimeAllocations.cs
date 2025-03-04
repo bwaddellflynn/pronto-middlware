@@ -32,4 +32,14 @@ namespace Pronto.Middleware.Models
         [JsonProperty("period_id")]
         public string Period_Id { get; set; }
     }
+
+    public class BudgetInfo
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("value")]
+        public int Value { get; set; } // Stored in seconds
+    }
+
 }

@@ -19,9 +19,14 @@ namespace Pronto.Middleware.Models
         [JsonProperty("date_closed")]
         public long? Date_Closed { get; set; }
 
-        // Other properties as per JSON structure
+        [JsonProperty("budget")]
+        public BudgetInfo Budget { get; set; }
+
+        [JsonProperty("budget_used")]
+        public BudgetInfo Budget_Used { get; set; }
 
         [JsonProperty("time_allocations")]
         public List<TimeAllocation> TimeAllocations { get; set; }
     }
+
 }

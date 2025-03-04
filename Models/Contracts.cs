@@ -22,7 +22,7 @@ namespace Pronto.Middleware.Models
         }
     }
 
-    public class AcceloApiResponse
+    public class AcceloResponse
     {
         [JsonProperty("response")]
         public List<ContractResponse> Response { get; set; }

@@ -1,9 +1,7 @@
-﻿namespace Pronto.Middleware.Models
+﻿using Newtonsoft.Json;
+
+namespace Pronto.Middleware.Models
 {
-    public class AcceloApiResponse<T>
-    {
-        public List<T> Response { get; set; }
-    }
 
     public class Issue
     {

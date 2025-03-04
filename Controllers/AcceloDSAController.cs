@@ -53,7 +53,7 @@ namespace Pronto.Middleware.Controllers
             }
 
             var contractsJsonResponse = await contractsResponse.Content.ReadAsStringAsync();
-            var acceloContractsResponse = JsonConvert.DeserializeObject<AcceloApiResponse>(contractsJsonResponse);
+            var acceloContractsResponse = JsonConvert.DeserializeObject<AcceloResponse>(contractsJsonResponse);
 
             var contracts = new List<Contract>();
 
@@ -254,7 +254,7 @@ namespace Pronto.Middleware.Controllers
             var issues = await GetIssuesFromAcceloAsync(accessToken, issueId, startDate, endDate);
             return Ok(issues);
         }
-        private async Task<List<AcceloGeneralController.Issue>> GetIssuesFromAcceloAsync(string accessToken, string issueId, long startDate, long endDate)
+        private async Task<List<Issue>> GetIssuesFromAcceloAsync(string accessToken, string issueId, long startDate, long endDate)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
@@ -269,12 +269,12 @@ namespace Pronto.Middleware.Controllers
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogError("Accelo API request failed: {StatusCode} - {Response}", response.StatusCode, jsonResponse);
-                return new List<AcceloGeneralController.Issue>();
+                return new List<Issue>();
             }
 
-            var acceloResponse = JsonConvert.DeserializeObject<AcceloGeneralController.AcceloApiResponse<AcceloGeneralController.IssueResponse>>(jsonResponse);
+            var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<IssueResponse>>(jsonResponse);
 
-            var issues = acceloResponse.Response.Select(issueResp => new AcceloGeneralController.Issue
+            var issues = acceloResponse.Response.Select(issueResp => new Issue 
             {
                 Id = int.Parse(issueResp.Id),
                 Title = issueResp.Title,
