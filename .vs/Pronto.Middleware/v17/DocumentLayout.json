@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\jobscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\jobscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\jobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\jobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\issues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\issues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\contracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\contracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\issuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\issuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\accelogeneralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\accelogeneralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\accelodsacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\accelodsacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\activities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\activities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\companiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\companiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\periodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\periodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,18 +59,6 @@
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\timeallocations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\issuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\issuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\jobscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\jobscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,36 +67,12 @@
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\contractscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\accelogeneralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\accelogeneralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\accelodsacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\accelodsacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\companiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\companiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\issues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\issues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\companies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\companies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\contracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\contracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\models\\acceloapiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:models\\acceloapiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|c:\\users\\bwadd\\projects\\pronto-middlware\\controllers\\timeallocations\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{172327A4-1339-443B-821D-CB29016B84A7}|Pronto.Middleware.csproj|solutionrelative:controllers\\timeallocations\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,72 +94,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TimeAllocations.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\TimeAllocations.cs",
-              "RelativeDocumentMoniker": "Models\\TimeAllocations.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\TimeAllocations.cs",
-              "RelativeToolTip": "Models\\TimeAllocations.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAwwCsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T19:12:22.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ContractPeriods.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\ContractPeriods.cs",
-              "RelativeDocumentMoniker": "Models\\ContractPeriods.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\ContractPeriods.cs*",
-              "RelativeToolTip": "Models\\ContractPeriods.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T19:11:58.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "JobsController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\JobsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\JobsController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\JobsController.cs",
-              "RelativeToolTip": "Controllers\\TimeAllocations\\JobsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:36:35.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "AcceloDSAController.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloDSAController.cs",
               "RelativeDocumentMoniker": "Controllers\\AcceloDSAController.cs",
               "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloDSAController.cs",
               "RelativeToolTip": "Controllers\\AcceloDSAController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUBAAAUAAAA",
+              "ViewState": "AQIAAAkBAAAAAAAAAAAcwBkBAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-28T17:22:13.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-28T17:22:13.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IssuesController.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\IssuesController.cs",
               "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\IssuesController.cs",
               "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\IssuesController.cs",
               "RelativeToolTip": "Controllers\\TimeAllocations\\IssuesController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAYwBcAAAARAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAAwEwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:36:25.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-03T04:36:25.702Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "ContractsController.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\ContractsController.cs",
               "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\ContractsController.cs",
@@ -159,60 +126,7 @@
               "RelativeToolTip": "Controllers\\TimeAllocations\\ContractsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:38:04.342Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PeriodsController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\PeriodsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\PeriodsController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\PeriodsController.cs",
-              "RelativeToolTip": "Controllers\\TimeAllocations\\PeriodsController.cs",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAgwGIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:34:26.422Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TaskController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\TaskController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\TaskController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\TaskController.cs",
-              "RelativeToolTip": "Controllers\\TimeAllocations\\TaskController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:35:04.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAABQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:40:23.651Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AcceloGeneralController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloGeneralController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AcceloGeneralController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloGeneralController.cs",
-              "RelativeToolTip": "Controllers\\AcceloGeneralController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T21:39:15.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-03T04:38:04.342Z"
             },
             {
               "$type": "Document",
@@ -224,38 +138,97 @@
               "RelativeToolTip": "Controllers\\TimeAllocations\\CompaniesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T16:48:37.015Z",
+              "WhenOpened": "2025-03-04T16:48:37.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TaskController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\TaskController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\TaskController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\TaskController.cs",
+              "RelativeToolTip": "Controllers\\TimeAllocations\\TaskController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T04:35:04.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JobsController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\JobsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\JobsController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\JobsController.cs",
+              "RelativeToolTip": "Controllers\\TimeAllocations\\JobsController.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAYwBcAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T04:36:35.142Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
+              "Title": "ActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\ActivityController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\ActivityController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\ActivityController.cs",
+              "RelativeToolTip": "Controllers\\TimeAllocations\\ActivityController.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAAAGAAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T04:35:28.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Jobs.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Jobs.cs",
+              "RelativeDocumentMoniker": "Models\\Jobs.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Jobs.cs",
+              "RelativeToolTip": "Models\\Jobs.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABgAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T00:06:59.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Activities.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Activities.cs",
+              "RelativeDocumentMoniker": "Models\\Activities.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Activities.cs",
+              "RelativeToolTip": "Models\\Activities.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAwwCcAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T23:37:53.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ContractPeriods.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\ContractPeriods.cs",
+              "RelativeDocumentMoniker": "Models\\ContractPeriods.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\ContractPeriods.cs",
+              "RelativeToolTip": "Models\\ContractPeriods.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBgAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T19:11:58.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Issues.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Issues.cs",
               "RelativeDocumentMoniker": "Models\\Issues.cs",
               "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Issues.cs",
               "RelativeToolTip": "Models\\Issues.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAWAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA1wCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:54:16.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-03T04:54:16.37Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Companies.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Companies.cs",
-              "RelativeDocumentMoniker": "Models\\Companies.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Companies.cs",
-              "RelativeToolTip": "Models\\Companies.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T16:16:30.241Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 4,
               "Title": "Contracts.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Contracts.cs",
               "RelativeDocumentMoniker": "Models\\Contracts.cs",
@@ -263,12 +236,71 @@
               "RelativeToolTip": "Models\\Contracts.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:54:23.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-03T04:54:23.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AcceloGeneralController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloGeneralController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AcceloGeneralController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\AcceloGeneralController.cs",
+              "RelativeToolTip": "Controllers\\AcceloGeneralController.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAUwHUAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T21:39:15.708Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TimeAllocations.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\TimeAllocations.cs",
+              "RelativeDocumentMoniker": "Models\\TimeAllocations.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\TimeAllocations.cs",
+              "RelativeToolTip": "Models\\TimeAllocations.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAkwCsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T19:12:22.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PeriodsController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\PeriodsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\PeriodsController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\PeriodsController.cs",
+              "RelativeToolTip": "Controllers\\TimeAllocations\\PeriodsController.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAgwGIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T04:34:26.422Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T04:40:23.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Companies.cs",
+              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Companies.cs",
+              "RelativeDocumentMoniker": "Models\\Companies.cs",
+              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\Companies.cs",
+              "RelativeToolTip": "Models\\Companies.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T16:16:30.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "AcceloApiResponse.cs",
               "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Models\\AcceloApiResponse.cs",
               "RelativeDocumentMoniker": "Models\\AcceloApiResponse.cs",
@@ -277,18 +309,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-03T04:49:47.644Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ActivityController.cs",
-              "DocumentMoniker": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\ActivityController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TimeAllocations\\ActivityController.cs",
-              "ToolTip": "C:\\Users\\bwadd\\Projects\\pronto-middlware\\Controllers\\TimeAllocations\\ActivityController.cs",
-              "RelativeToolTip": "Controllers\\TimeAllocations\\ActivityController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T04:35:28.919Z"
             }
           ]
         }
