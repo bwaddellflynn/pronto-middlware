@@ -1,9 +1,9 @@
+# Ignore DS_Store (macOS), Node modules, and build output
 .DS_Store
-node_modules
-/dist
+node_modules/
+dist/
 
-
-# local env files
+# Local env files
 .env.local
 .env.*.local
 
@@ -14,10 +14,57 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Editor directories and files
-.idea
-.vscode
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# C# & .NET build output
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.nuget/
+*.nupkg
+*.log
+*.user
+*.vs/
+*.db
+*.mdb
+*.bak
+*.orig
+
+# ASP.NET & Sitefinity-specific files
+App_Data/
+AppInsights.config
+AppTelemetry.config
+project.lock.json
+project.assets.json
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+*.dotSettings
+*.dotSettings.user
+
+# VS Code workspace settings
+.vscode/
+
+# Ignore generated files
+coverage/
+*.generated.cs
+*.tmp
+*.cache
+
+# Ignore local database files
+*.mdf
+*.ldf
+
+# Ignore testing artifacts
+TestResults/
+*.trx
+*.testsettings
