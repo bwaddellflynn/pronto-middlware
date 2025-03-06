@@ -66,7 +66,7 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var requestUrl = $"{_baseUrl}activities/?_limit=100&_fields=against_id,against_type,task,date_created,date_modified,billable" +
-                $"&_filters=task(0),against_id({againstId}),against_type({againstType}),date_modified_after({date_modified_after}),date_modified_before({date_modified_before}),billable_greater_than(0)";
+                $"&_filters=activity_class(),task(0),against_id({againstId}),against_type({againstType}),date_logged_after({date_modified_after}),date_logged_before({date_modified_before}),billable_greater_than(0)";
 
             _logger.LogInformation("Accelo API Request: {RequestUrl}", requestUrl);
             var response = await client.GetAsync(requestUrl);
@@ -94,7 +94,7 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var requestUrl = $"{_baseUrl}activities/?_limit=100&_fields=_ALL" +
-                $"&_filters=task({taskId}),date_modified_after({date_modified_after}),date_modified_before({date_modified_before}),billable_greater_than(0)";
+                $"&_filters=activity_class(),task({taskId}),date_logged_after({date_modified_after}),date_logged_before({date_modified_before}),billable_greater_than(0)";
 
             _logger.LogInformation("Accelo API Request: {RequestUrl}", requestUrl);
             var response = await client.GetAsync(requestUrl);
