@@ -26,7 +26,7 @@ namespace Pronto.Middleware.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTasks(string againstType, int againstId)
+        public async Task<IActionResult> GetTasks(string againstType, string againstId, long date_modified_after, long date_modified_before)
         {
             if (string.IsNullOrEmpty(againstType) || (againstType != "job" && againstType != "issue" && againstType != "task"))
             {
@@ -47,22 +47,29 @@ namespace Pronto.Middleware.Controllers
 
             if (againstType == "task")
             {
-                var task = await GetTaskFromAcceloAsync(accessToken, againstId);
-                return Ok(task);
+                var taskActivities = await GetTaskFromAcceloAsync(accessToken, againstId, date_modified_after, date_modified_before);
+                return Ok(taskActivities);
             }
             else
             {
-                var tasks = await GetTasksFromAcceloAsync(accessToken, againstType, againstId);
+                var tasks = await GetTasksFromAcceloAsync(accessToken, againstType, againstId, date_modified_after, date_modified_before);
                 return Ok(tasks);
             }
         }
 
-        private async Task<List<Activity>> GetTasksFromAcceloAsync(string accessToken, string againstType, int againstId)
+        /// <summary>
+        /// Fetches activities related to jobs/issues (batch call).
+        /// </summary>
+        private async Task<List<Activity>> GetTasksFromAcceloAsync(string accessToken, string againstType, string againstId, long date_modified_after, long date_modified_before)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await client.GetAsync($"{_baseUrl}activities?_filters=against_id({againstId}),against_type({againstType})&_fields=_ALL");
+            var requestUrl = $"{_baseUrl}activities/?_limit=100&_fields=against_id,against_type,task,date_created,date_modified,billable" +
+                $"&_filters=task(0),against_id({againstId}),against_type({againstType}),date_modified_after({date_modified_after}),date_modified_before({date_modified_before}),billable_greater_than(0)";
+
+            _logger.LogInformation("Accelo API Request: {RequestUrl}", requestUrl);
+            var response = await client.GetAsync(requestUrl);
 
             _logger.LogInformation("Accelo API response status: {StatusCode}", response.StatusCode);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -78,12 +85,19 @@ namespace Pronto.Middleware.Controllers
             return acceloResponse.Response;
         }
 
-        private async Task<List<Activity>> GetTaskFromAcceloAsync(string accessToken, int taskId)
+        /// <summary>
+        /// Fetches activities related to individual tasks (one call per task).
+        /// </summary>
+        private async Task<List<Activity>> GetTaskFromAcceloAsync(string accessToken, string taskId, long date_modified_after, long date_modified_before)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await client.GetAsync($"{_baseUrl}activities/?_fields=_ALL&_filters=task({taskId})");
+            var requestUrl = $"{_baseUrl}activities/?_limit=100&_fields=_ALL" +
+                $"&_filters=task({taskId}),date_modified_after({date_modified_after}),date_modified_before({date_modified_before}),billable_greater_than(0)";
+
+            _logger.LogInformation("Accelo API Request: {RequestUrl}", requestUrl);
+            var response = await client.GetAsync(requestUrl);
 
             _logger.LogInformation("Accelo API response status: {StatusCode}", response.StatusCode);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -94,6 +108,7 @@ namespace Pronto.Middleware.Controllers
                 _logger.LogError("Accelo API request failed: {StatusCode} - {Response}", response.StatusCode, jsonResponse);
                 return new List<Activity>();
             }
+
             var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<Activity>>(jsonResponse);
             return acceloResponse.Response;
         }

@@ -279,7 +279,7 @@ namespace Pronto.Middleware.Controllers
                 Id = int.Parse(issueResp.Id),
                 Title = issueResp.Title,
                 Against_Id = int.Parse(issueResp.Against_Id),
-                Resolution_Detail = issueResp.Resolution_Detail,
+                Description = issueResp.Description,
                 Standing = issueResp.Standing,
                 Date_Opened = long.Parse(issueResp.Date_Opened),
                 Billable_Seconds = int.Parse(issueResp.Billable_Seconds),

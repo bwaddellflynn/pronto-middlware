@@ -44,7 +44,7 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
 
-            var response = await client.GetAsync($"{_baseUrl}issues?_limit=100&_filters=id({issueId}),billable_seconds_greater_than(0),date_modified_after({startDate}),date_modified_before({endDate})&_fields=against_id,resolution_detail,date_modified,standing,date_opened,billable_seconds,class(title)");
+            var response = await client.GetAsync($"{_baseUrl}issues?_limit=100&_filters=id({issueId})&_fields=against_id,description,date_modified,standing,date_opened,billable_seconds,class(title)");
 
             _logger.LogInformation("Accelo API response status: {StatusCode}", response.StatusCode);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -63,7 +63,7 @@ namespace Pronto.Middleware.Controllers
                 Id = int.Parse(issueResp.Id),
                 Title = issueResp.Title,
                 Against_Id = int.Parse(issueResp.Against_Id),
-                Resolution_Detail = issueResp.Resolution_Detail,
+                Description = issueResp.Description,
                 Standing = issueResp.Standing,
                 Date_Opened = long.Parse(issueResp.Date_Opened),
                 Billable_Seconds = int.Parse(issueResp.Billable_Seconds),
