@@ -44,7 +44,7 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
 
-            var response = await client.GetAsync($"{_baseUrl}milestones?_limit=100&_filters=id({milestoneId})&_fields=against_id,description,date_modified,standing,date_opened,billable_seconds,title");
+            var response = await client.GetAsync($"{_baseUrl}milestones?_limit=100&_filters=id({milestoneId})&_fields=against_id,job, date_commenced,description,date_modified,standing,date_opened,billable_seconds,title");
 
             _logger.LogInformation("Accelo API response status: {StatusCode}", response.StatusCode);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -65,9 +65,7 @@ namespace Pronto.Middleware.Controllers
                 Job = int.Parse(milestoneResp.Job),
                 Description = milestoneResp.Description,
                 Standing = milestoneResp.Standing,
-                Date_Opened = long.Parse(milestoneResp.Date_Opened),
-                Billable_Seconds = int.Parse(milestoneResp.Billable_Seconds),
-                Class = milestoneResp.Class,
+                Date_Commenced = long.Parse(milestoneResp.Date_Commenced),
             }).ToList();
 
             return milestones;

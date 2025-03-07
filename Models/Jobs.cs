@@ -12,7 +12,6 @@ namespace Pronto.Middleware.Models
         public string Standing { get; set; }
         public long Date_Commenced { get; set; }
         public long Date_Modified { get; set; }
-        public string Class { get; set; }
     }
 
     public class JobResponse
@@ -23,6 +22,5 @@ namespace Pronto.Middleware.Models
         public string Standing { get; set; }
         public string Date_Commenced { get; set; }
         public string Date_Modified { get; set; }
-        public ClassResponse Class { get; set; }
     }
 }

@@ -38,13 +38,13 @@ namespace Pronto.Middleware.Controllers
             var jobs = await GetJobsFromAcceloAsync(accessToken, jobId, startDate, endDate);
             return Ok(jobs);
         }
-        private async Task<List<Job>> GetJobsFromAcceloAsync(string accessToken, string issueId, long startDate, long endDate)
+        private async Task<List<Job>> GetJobsFromAcceloAsync(string accessToken, string jobId, long startDate, long endDate)
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
 
-            var response = await client.GetAsync($"{_baseUrl}jobs?_limit=100&_filters=id({issueId})&_fields=against_id,date_modified,standing,date_commenced,billable_seconds,class(title)");
+            var response = await client.GetAsync($"{_baseUrl}jobs?_limit=100&_filters=id({jobId})&_fields=against_id,date_modified,standing,date_commenced,billable_seconds");
 
             _logger.LogInformation("Accelo API response status: {StatusCode}", response.StatusCode);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -66,7 +66,6 @@ namespace Pronto.Middleware.Controllers
                 Standing = jobResp.Standing,
                 Date_Commenced = long.Parse(jobResp.Date_Commenced),
                 Date_Modified = long.Parse(jobResp.Date_Modified),
-                Class = jobResp.Class.Title,
             }).ToList();
 
             return jobs;
