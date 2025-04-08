@@ -58,7 +58,8 @@ namespace Pronto.Middleware.Controllers
 
             var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<MilestoneResponse>>(jsonResponse);
 
-            var milestones = acceloResponse.Response.Select(milestoneResp => new Milestone
+            var milestones = acceloResponse.Response.Select(milestoneResp => 
+            new Milestone
             {
                 Id = int.Parse(milestoneResp.Id),
                 Title = milestoneResp.Title,
