@@ -26,7 +26,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EITask>>> GetTasksAsync(
             [FromQuery] int limit = 100,
-            [FromQuery(Name = "fields")] string? fields = "id,title,description,status,standing,assignee,date_created,date_due,date_completed,billable,nonbillable,against_type,against_id",
+            [FromQuery(Name = "fields")] string? fields = "id,title,description,status,standing,assignee,date_created,date_due,date_completed,billable,nonbillable,against_type,against_id,remaining,object_budget,logged",
             [FromQuery] string? filters = null)
 
         {
@@ -82,7 +82,6 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 allResponses.AddRange(batch);
                 offset += batch.Count;
             }
-
             return allResponses.Select(r => new EITask
             {
                 Id = r.Id,
@@ -97,7 +96,10 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 Billable = r.Billable,
                 NonBillable = r.NonBillable,
                 AgainstType = r.AgainstType,
-                AgainstId = r.AgainstId
+                AgainstId = r.AgainstId,
+                Remaining = r.Remaining,
+                Logged = r.Logged,
+                ObjectBudget = r.ObjectBudget
             }).ToList();
         }
     }

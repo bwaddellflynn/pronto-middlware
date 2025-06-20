@@ -24,5 +24,10 @@ namespace Pronto.Middleware.Models.EmployeeInsights
 
         [JsonProperty("against_type")] public string AgainstType { get; set; } = default!;
         [JsonProperty("against_id")] public string AgainstId { get; set; } = default!;
+
+        // 🆕 Fields for task progress / status bar
+        [JsonProperty("remaining")] public int Remaining { get; set; }
+        [JsonProperty("logged")] public int Logged { get; set; }
+        [JsonProperty("object_budget")] public int ObjectBudget { get; set; }
     }
 }

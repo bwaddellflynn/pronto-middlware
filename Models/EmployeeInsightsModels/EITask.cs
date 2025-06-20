@@ -22,5 +22,10 @@
 
         public string AgainstType { get; set; } = default!;
         public string AgainstId { get; set; } = default!;
+
+        // 🆕 Fields for task card UI
+        public int Remaining { get; set; }        // Time left in minutes
+        public int Logged { get; set; }           // Logged time in minutes
+        public int ObjectBudget { get; set; }     // Total budgeted time in minutes
     }
 }
