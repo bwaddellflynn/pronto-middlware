@@ -1,4 +1,5 @@
-﻿namespace Pronto.Middleware.Models.ProjectManagementModels
+﻿// Pronto.Middleware.Models.ProjectManagementModels.PMTask.cs
+namespace Pronto.Middleware.Models.ProjectManagementModels
 {
     public class PMTask
     {
@@ -18,5 +19,12 @@
         public string? TaskStatus { get; set; }
         public string? TaskType { get; set; }
         public string? Manager { get; set; }
+
+        // New properties for billing and budgeting
+        public long Billable { get; set; }
+        public long NonBillable { get; set; }
+        public long Remaining { get; set; }
+        public long Logged { get; set; }
+        public long ObjectBudget { get; set; }
     }
 }

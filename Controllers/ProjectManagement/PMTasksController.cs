@@ -82,7 +82,12 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 Assignee = task.Assignee,
                 TaskStatus = task.TaskStatus,
                 TaskType = task.TaskType,
-                Manager = task.Manager
+                Manager = task.Manager,
+                Billable = long.TryParse(task.Billable, out var b) ? b : 0,
+                NonBillable = long.TryParse(task.NonBillable, out var nb) ? nb : 0,
+                Remaining = long.TryParse(task.Remaining, out var rem) ? rem : 0,
+                Logged = long.TryParse(task.Logged, out var lg) ? lg : 0,
+                ObjectBudget = long.TryParse(task.ObjectBudget, out var ob) ? ob : 0
             }).ToList() ?? new List<PMTask>();
         }
     }
