@@ -1,4 +1,5 @@
 ﻿// src/Pronto.Middleware/Models/EmployeeInsights/ActivityModels.cs
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Pronto.Middleware.Models.EmployeeInsights
@@ -18,6 +19,10 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         public string TaskId { get; set; } = default!;
         public string AgainstType { get; set; } = default!;
         public string AgainstId { get; set; } = default!;
+        [JsonProperty("activity_class")]
+        public string ActivityClass { get; set; } = default!;
+        public string? ActivityPriority { get; set; }
+        public List<ActivityBreadcrumb>? Breadcrumbs { get; set; }
         public string Status { get; set; } = default!;
     }
 
@@ -36,7 +41,17 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         [JsonProperty("task")] public string Task { get; set; } = default!;
         [JsonProperty("against_type")] public string AgainstType { get; set; } = default!;
         [JsonProperty("against_id")] public string AgainstId { get; set; } = default!;
+        [JsonProperty("activity_class")] public string ActivityClass { get; set; } = default!;
+        [JsonProperty("activity_priority")] public string? ActivityPriority { get; set; }
+        [JsonProperty("breadcrumbs")] public List<ActivityBreadcrumb>? Breadcrumbs { get; set; }
         [JsonProperty("standing")] public string Standing { get; set; } = default!;
         // Add additional properties if needed
+    }
+
+    public class ActivityBreadcrumb
+    {
+        [JsonProperty("id")] public string Id { get; set; } = default!;
+        [JsonProperty("table")] public string Table { get; set; } = default!;
+        [JsonProperty("title")] public string Title { get; set; } = default!;
     }
 }
