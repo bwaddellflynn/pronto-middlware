@@ -125,6 +125,9 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 TaskId = r.Task,
                 AgainstType = r.AgainstType,
                 AgainstId = r.AgainstId,
+                ActivityClass = r.ActivityClass,
+                ActivityPriority = r.ActivityPriority,
+                Breadcrumbs = r.Breadcrumbs,
                 Status = r.Standing
             }).ToList();
         }
@@ -165,6 +168,9 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 TaskId = r.Task,
                 AgainstType = r.AgainstType,
                 AgainstId = r.AgainstId,
+                ActivityClass = r.ActivityClass,
+                ActivityPriority = r.ActivityPriority,
+                Breadcrumbs = r.Breadcrumbs,
                 Status = r.Standing
             };
         }
