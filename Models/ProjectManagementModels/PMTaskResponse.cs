@@ -16,7 +16,7 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         [JsonProperty("date_due")] public string? DateDue { get; set; }
         [JsonProperty("date_completed")] public string? DateCompleted { get; set; }
         [JsonProperty("task_priority")] public string? TaskPriority { get; set; }
-        [JsonProperty("assignee")] public string? Assignee { get; set; }
+        [JsonProperty("assignee")] public TaskAssigneeResponse? Assignee { get; set; }
         [JsonProperty("task_status")] public string? TaskStatus { get; set; }
         [JsonProperty("task_type")] public string? TaskType { get; set; }
         [JsonProperty("manager")] public string? Manager { get; set; }
@@ -27,5 +27,12 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         [JsonProperty("remaining")] public string? Remaining { get; set; }
         [JsonProperty("logged")] public string? Logged { get; set; }
         [JsonProperty("object_budget")] public string? ObjectBudget { get; set; }
+    }
+
+    public class TaskAssigneeResponse
+    {
+        [JsonProperty("id")] public string Id { get; set; }
+        [JsonProperty("firstname")] public string? FirstName { get; set; }
+        [JsonProperty("surname")] public string? Surname { get; set; }
     }
 }

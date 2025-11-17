@@ -15,7 +15,7 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         public long? DateDue { get; set; }
         public long? DateCompleted { get; set; }
         public string? TaskPriority { get; set; }
-        public string? Assignee { get; set; }
+        public TaskAssignee? Assignee { get; set; }
         public string? TaskStatus { get; set; }
         public string? TaskType { get; set; }
         public string? Manager { get; set; }
@@ -26,5 +26,12 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         public long Remaining { get; set; }
         public long Logged { get; set; }
         public long ObjectBudget { get; set; }
+    }
+
+    public class TaskAssignee
+    {
+        public int Id { get; set; }
+        public string? FirstName { get; set; }
+        public string? Surname { get; set; }
     }
 }
