@@ -79,7 +79,12 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 DateDue = long.TryParse(task.DateDue, out var d2) ? d2 : null,
                 DateCompleted = long.TryParse(task.DateCompleted, out var d3) ? d3 : null,
                 TaskPriority = task.TaskPriority,
-                Assignee = task.Assignee,
+                Assignee = task.Assignee == null ? null : new TaskAssignee
+                {
+                    Id = int.TryParse(task.Assignee.Id, out var assigneeId) ? assigneeId : 0,
+                    FirstName = task.Assignee.FirstName,
+                    Surname = task.Assignee.Surname
+                },
                 TaskStatus = task.TaskStatus,
                 TaskType = task.TaskType,
                 Manager = task.Manager,
