@@ -15,5 +15,7 @@
         public long? DateCreated { get; set; }
         public long? DateStarted { get; set; }
         public long? DateDue { get; set; }
+        public long? ServiceTimeSubtotalEstimateSeconds { get; set; }
+        public string? ServiceTimeSubtotalEstimateFormatted { get; set; }
     }
 }

@@ -80,7 +80,7 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         public string? JobObjectSchedule { get; set; }
 
         [JsonProperty("job_object_budget")]
-        public string? JobObjectBudget { get; set; }
+        public JobObjectBudget? JobObjectBudget { get; set; }
 
         [JsonProperty("affiliation")]
         public string? Affiliation { get; set; }
@@ -111,5 +111,11 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
 
         [JsonProperty("id")]
         public string Id { get; set; }
+    }
+
+    public class JobObjectBudget
+    {
+        [JsonProperty("service_time_subtotal_estimate")]
+        public string? ServiceTimeSubtotalEstimate { get; set; }
     }
 }

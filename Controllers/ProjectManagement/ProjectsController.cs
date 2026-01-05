@@ -39,7 +39,7 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                     return Unauthorized("Invalid Authorization header.");
                 }
 
-                fields ??= "_ALL,type(),breadcrumbs";
+                fields ??= "_ALL,type(),breadcrumbs,job_object_budget(_ALL)";
                 filters ??= "job_status(14,15,16,17,18,19,22)";
 
                 var accessToken = headerValue.Parameter;
@@ -88,10 +88,30 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 DateModified = long.TryParse(r.DateModified, out var dm) ? dm : (long?)null,
                 DateCreated = long.TryParse(r.DateCreated, out var dcrt) ? dcrt : (long?)null,
                 DateStarted = long.TryParse(r.DateStarted, out var ds) ? ds : (long?)null,
-                DateDue = long.TryParse(r.DateDue, out var dd) ? dd : (long?)null
+                DateDue = long.TryParse(r.DateDue, out var dd) ? dd : (long?)null,
+                ServiceTimeSubtotalEstimateSeconds = TryParseLong(r.JobObjectBudget?.ServiceTimeSubtotalEstimate),
+                ServiceTimeSubtotalEstimateFormatted = FormatDuration(
+                    TryParseLong(r.JobObjectBudget?.ServiceTimeSubtotalEstimate)
+                )
             }).ToList() ?? new List<Project>();
 
             return projects;
+        }
+
+        private static long? TryParseLong(string? value) =>
+            long.TryParse(value, out var parsed) ? parsed : (long?)null;
+
+        private static string? FormatDuration(long? seconds)
+        {
+            if (!seconds.HasValue || seconds.Value < 0)
+            {
+                return null;
+            }
+
+            var totalMinutes = seconds.Value / 60;
+            var hours = totalMinutes / 60;
+            var minutes = totalMinutes % 60;
+            return $"{hours:D2}:{minutes:D2}";
         }
 
         private class AcceloApiResponse<T>
