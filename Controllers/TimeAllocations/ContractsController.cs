@@ -45,7 +45,7 @@ namespace Pronto.Middleware.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             // Ensure owner_affiliation field is correctly specified in the request
-            var contractsResponse = await client.GetAsync($"{_baseUrl}contracts?_filters=standing(active)&_limit=100&_fields=breadcrumbs,owner_affiliation");
+            var contractsResponse = await client.GetAsync($"{_baseUrl}contracts?_fields=period_template(),breadcrumbs,owner_affiliation&_filters=standing(active)&_limit=100");
             if (!contractsResponse.IsSuccessStatusCode)
             {
                 return new List<Contract>();
@@ -92,6 +92,7 @@ namespace Pronto.Middleware.Controllers
                     Frequency = reportingFrequencyCustomField,
                     DSA_Agreement = dsaAgreementCustomField,
                     Affiliation = affiliation,
+                    PeriodTemplate = contractResponse.PeriodTemplate,
 
                 };
 
