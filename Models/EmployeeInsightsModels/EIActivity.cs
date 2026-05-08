@@ -54,4 +54,14 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         [JsonProperty("table")] public string Table { get; set; } = default!;
         [JsonProperty("title")] public string Title { get; set; } = default!;
     }
+
+    public class ActivitySummary
+    {
+        public string StaffId { get; set; } = default!;
+        public string Date { get; set; } = default!;
+        public int BillableSeconds { get; set; }
+        public int ClientNonBillableSeconds { get; set; }
+        public int InternalNonBillableSeconds { get; set; }
+        public int TotalSeconds { get; set; }
+    }
 }

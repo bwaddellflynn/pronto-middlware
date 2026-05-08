@@ -14,6 +14,7 @@ builder.Services.AddControllersWithViews();
 
 // Register IHttpClientFactory
 builder.Services.AddHttpClient();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddSession(options =>
 {
