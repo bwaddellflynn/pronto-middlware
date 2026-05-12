@@ -16,6 +16,7 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         public string Billable { get; set; } = default!;
         public string NonBillable { get; set; } = default!;
         public string OwnerId { get; set; } = default!;
+        public string? StaffId { get; set; }
         public string TaskId { get; set; } = default!;
         public string AgainstType { get; set; } = default!;
         public string AgainstId { get; set; } = default!;
@@ -38,6 +39,7 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         [JsonProperty("billable")] public string Billable { get; set; } = default!;
         [JsonProperty("nonbillable")] public string NonBillable { get; set; } = default!;
         [JsonProperty("owner_id")] public string OwnerId { get; set; } = default!;
+        [JsonProperty("staff")] public string? StaffId { get; set; }
         [JsonProperty("task")] public string Task { get; set; } = default!;
         [JsonProperty("against_type")] public string AgainstType { get; set; } = default!;
         [JsonProperty("against_id")] public string AgainstId { get; set; } = default!;
