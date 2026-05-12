@@ -16,11 +16,22 @@ pnpm-debug.log*
 # Editor directories and files
 .idea
 .vscode
+.vs/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# C# / .NET build output
+bin/
+obj/
+*.user
+*.dll
+*.exe
+*.pdb
+*.nupkg
+*.log
 
 # Local middleware repo
 /pronto-middlware/
