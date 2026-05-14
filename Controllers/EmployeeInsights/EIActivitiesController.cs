@@ -111,7 +111,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 ownerId,
                 timeZone,
                 requestId,
-                CancellationToken.None);
+                HttpContext.RequestAborted);
 
             endpointStopwatch.Stop();
             _logger.LogInformation(

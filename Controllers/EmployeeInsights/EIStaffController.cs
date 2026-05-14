@@ -17,14 +17,36 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<EIStaffController> _logger;
+        private readonly IConfiguration _configuration;
         private const string BaseUrl = "https://perbyte.api.accelo.com/api/v0/";
 
         public EIStaffController(
             IHttpClientFactory httpClientFactory,
-            ILogger<EIStaffController> logger)
+            ILogger<EIStaffController> logger,
+            IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
+            _configuration = configuration;
+        }
+
+        /// <summary>
+        /// GET /employeeinsights/staff/weekly-targets
+        /// Returns configured weekly target hours for Staff Insights.
+        /// </summary>
+        [HttpGet("weekly-targets")]
+        public ActionResult<object> GetWeeklyTargets()
+        {
+            var section = _configuration.GetSection("EmployeeInsightsWeeklyTargets");
+            var defaultWeeklyHourTarget = section.GetValue<double?>("DefaultWeeklyHours") ?? 40;
+            var weeklyHourTargets = section.GetSection("StaffWeeklyHours").Get<Dictionary<string, double>>()
+                ?? new Dictionary<string, double>();
+
+            return Ok(new
+            {
+                defaultWeeklyHourTarget,
+                weeklyHourTargets
+            });
         }
 
         /// <summary>

@@ -109,3 +109,10 @@ C:\Users\bwadd\Projects\pronto\pronto\temp-build\middleware\Pronto.Middleware.de
 C:\Users\bwadd\Projects\pronto\pronto\temp-build\middleware\Pronto.Middleware.runtimeconfig.json
 C:\Users\bwadd\Projects\pronto\pronto\temp-build\middleware\Pronto.Middleware.dll
 C:\Users\bwadd\Projects\pronto\pronto\temp-build\middleware\Pronto.Middleware.pdb
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\appsettings.Development.json
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\appsettings.json
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\Pronto.Middleware.exe
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\Pronto.Middleware.deps.json
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\Pronto.Middleware.runtimeconfig.json
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\Pronto.Middleware.dll
+C:\Users\bwadd\AppData\Local\Temp\pronto-middleware-build-check\Pronto.Middleware.pdb
