@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pronto.Middleware.Models.EmployeeInsights;
 using Pronto.Middleware.Models;
+using Pronto.Middleware.Services.EmployeeInsights;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMemoryCache _cache;
         private readonly ILogger<EIActivitiesController> _logger;
+        private readonly IEmployeeInsightsActivitySummaryService _summaryService;
         private const string BaseUrl = "https://perbyte.api.accelo.com/api/v0/";
         private const int MaxConcurrentActivityPageRequests = 30;
         private static readonly HashSet<int> InternalNonBillableClasses = new() { 3, 5, 11, 12, 13, 14, 15 };
@@ -42,11 +44,13 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
         public EIActivitiesController(
             IHttpClientFactory httpClientFactory,
             IMemoryCache cache,
-            ILogger<EIActivitiesController> logger)
+            ILogger<EIActivitiesController> logger,
+            IEmployeeInsightsActivitySummaryService summaryService)
         {
             _httpClientFactory = httpClientFactory;
             _cache = cache;
             _logger = logger;
+            _summaryService = summaryService;
         }
 
         [HttpGet]
@@ -79,7 +83,6 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
             [FromQuery] string? timeZone = "America/Chicago")
         {
             var endpointStopwatch = Stopwatch.StartNew();
-            var phaseStopwatch = Stopwatch.StartNew();
             var requestId = HttpContext.TraceIdentifier;
 
             _logger.LogInformation(
@@ -100,60 +103,15 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
 
             var token = headerValue.Parameter!;
 
-            var filters = BuildActivityFilters(startDate, endDate, ownerId);
-
-            var fields = "id,date_logged,billable,nonbillable,staff,owner_id,activity_class,against_type,against_id,breadcrumbs";
-            var cacheKey = BuildSummaryCacheKey(token, limit, startDate, endDate, ownerId, timeZone, fields);
-            _logger.LogInformation(
-                "Employee Insights summary timing: RequestId={RequestId}, Phase={Phase}, DurationMs={DurationMs}, TotalDurationMs={TotalDurationMs}, Filters={Filters}, CacheKey={CacheKey}",
+            var summary = await _summaryService.GetActivitySummaryAsync(
+                token,
+                limit,
+                startDate,
+                endDate,
+                ownerId,
+                timeZone,
                 requestId,
-                "setup",
-                phaseStopwatch.ElapsedMilliseconds,
-                endpointStopwatch.ElapsedMilliseconds,
-                filters ?? "none",
-                cacheKey);
-            phaseStopwatch.Restart();
-
-            if (_cache.TryGetValue(cacheKey, out List<ActivitySummary>? cachedSummary))
-            {
-                _logger.LogInformation(
-                    "Employee Insights summary timing: RequestId={RequestId}, Phase={Phase}, DurationMs={DurationMs}, TotalDurationMs={TotalDurationMs}, SummaryRows={SummaryRows}, CacheKey={CacheKey}",
-                    requestId,
-                    "cache-hit",
-                    phaseStopwatch.ElapsedMilliseconds,
-                    endpointStopwatch.ElapsedMilliseconds,
-                    cachedSummary.Count,
-                    cacheKey);
-                return Ok(cachedSummary);
-            }
-
-            _logger.LogInformation(
-                "Employee Insights summary timing: RequestId={RequestId}, Phase={Phase}, DurationMs={DurationMs}, TotalDurationMs={TotalDurationMs}, CacheKey={CacheKey}",
-                requestId,
-                "cache-miss",
-                phaseStopwatch.ElapsedMilliseconds,
-                endpointStopwatch.ElapsedMilliseconds,
-                cacheKey);
-            phaseStopwatch.Restart();
-
-            var summary = await FetchActivitySummaryAsync(token, limit, fields, filters, timeZone);
-            _logger.LogInformation(
-                "Employee Insights summary timing: RequestId={RequestId}, Phase={Phase}, DurationMs={DurationMs}, TotalDurationMs={TotalDurationMs}, SummaryRows={SummaryRows}",
-                requestId,
-                "fetch-and-build-summary",
-                phaseStopwatch.ElapsedMilliseconds,
-                endpointStopwatch.ElapsedMilliseconds,
-                summary.Count);
-            phaseStopwatch.Restart();
-
-            _cache.Set(cacheKey, summary, BuildSummaryCacheOptions(endDate));
-            _logger.LogInformation(
-                "Employee Insights summary timing: RequestId={RequestId}, Phase={Phase}, DurationMs={DurationMs}, TotalDurationMs={TotalDurationMs}, SummaryRows={SummaryRows}",
-                requestId,
-                "cache-set",
-                phaseStopwatch.ElapsedMilliseconds,
-                endpointStopwatch.ElapsedMilliseconds,
-                summary.Count);
+                CancellationToken.None);
 
             endpointStopwatch.Stop();
             _logger.LogInformation(
@@ -162,6 +120,18 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 "controller-before-ok",
                 endpointStopwatch.ElapsedMilliseconds,
                 summary.Count);
+
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await _summaryService.WarmCurrentYearAsync(token);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Employee Insights lazy cache warm-up failed.");
+                }
+            });
 
             return Ok(summary);
         }

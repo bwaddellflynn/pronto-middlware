@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
+using Pronto.Middleware.Services.EmployeeInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -15,6 +16,10 @@ builder.Services.AddControllersWithViews();
 // Register IHttpClientFactory
 builder.Services.AddHttpClient();
 builder.Services.AddMemoryCache();
+builder.Services.Configure<EmployeeInsightsCacheOptions>(
+    builder.Configuration.GetSection("EmployeeInsightsCache"));
+builder.Services.AddSingleton<IEmployeeInsightsActivitySummaryService, EmployeeInsightsActivitySummaryService>();
+builder.Services.AddHostedService<EmployeeInsightsCacheWarmupHostedService>();
 
 builder.Services.AddSession(options =>
 {
