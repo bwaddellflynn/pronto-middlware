@@ -64,6 +64,7 @@ namespace Pronto.Middleware.Models.EmployeeInsights
         public int BillableSeconds { get; set; }
         public int ClientNonBillableSeconds { get; set; }
         public int InternalNonBillableSeconds { get; set; }
+        public int PtoSeconds { get; set; }
         public int TotalSeconds { get; set; }
     }
 }

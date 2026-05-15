@@ -30,6 +30,14 @@ namespace Pronto.Middleware.Services.EmployeeInsights
             "other",
             "internal technical activities"
         };
+        private static readonly HashSet<string> PtoMilestoneTitles = new(StringComparer.OrdinalIgnoreCase)
+        {
+            "benefits"
+        };
+        private static readonly HashSet<string> PtoTaskTitles = new(StringComparer.OrdinalIgnoreCase)
+        {
+            "pto"
+        };
         private static readonly string[] InternalJobTitleKeywords = { "perbyte internal activities" };
         private static readonly ConcurrentDictionary<string, Lazy<Task<List<ActivitySummary>>>> PendingSummaryRequests = new();
         private static readonly ConcurrentDictionary<string, byte> WarmedTokenHashes = new();
@@ -546,7 +554,9 @@ namespace Pronto.Middleware.Services.EmployeeInsights
                 if (nonBillableSeconds <= 0)
                     continue;
 
-                if (IsInternalNonBillable(activity))
+                if (IsPtoActivity(activity))
+                    summary.PtoSeconds += nonBillableSeconds;
+                else if (IsInternalNonBillable(activity))
                     summary.InternalNonBillableSeconds += nonBillableSeconds;
                 else
                     summary.ClientNonBillableSeconds += nonBillableSeconds;
@@ -581,6 +591,7 @@ namespace Pronto.Middleware.Services.EmployeeInsights
                 target.BillableSeconds += source.BillableSeconds;
                 target.ClientNonBillableSeconds += source.ClientNonBillableSeconds;
                 target.InternalNonBillableSeconds += source.InternalNonBillableSeconds;
+                target.PtoSeconds += source.PtoSeconds;
                 target.TotalSeconds += source.TotalSeconds;
             }
 
@@ -670,6 +681,31 @@ namespace Pronto.Middleware.Services.EmployeeInsights
             }
 
             return false;
+        }
+
+        private static bool IsPtoActivity(ActivityResponse activity)
+        {
+            if (activity.Breadcrumbs == null)
+                return false;
+
+            var hasBenefitsMilestone = false;
+            var hasPtoTask = false;
+
+            foreach (var crumb in activity.Breadcrumbs)
+            {
+                var table = crumb.Table?.Trim();
+                var title = crumb.Title?.Trim();
+                if (string.IsNullOrWhiteSpace(table) || string.IsNullOrWhiteSpace(title))
+                    continue;
+
+                if (table.Equals("milestone", StringComparison.OrdinalIgnoreCase) && PtoMilestoneTitles.Contains(title))
+                    hasBenefitsMilestone = true;
+
+                if (table.Equals("task", StringComparison.OrdinalIgnoreCase) && PtoTaskTitles.Contains(title))
+                    hasPtoTask = true;
+            }
+
+            return hasBenefitsMilestone && hasPtoTask;
         }
 
         private static string? BuildActivityFilters(long? startDate, long? endDate, int? staffId)
