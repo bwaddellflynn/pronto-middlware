@@ -22,7 +22,12 @@
         public string? MilestoneStatus { get; set; }      // preferred
         public decimal? Rate { get; set; }
         public decimal? RateCharged { get; set; }
-        public string? MilestoneObjectBudget { get; set; }
+        public PMMilestoneBudget? MilestoneObjectBudget { get; set; }
+        public long? LoggedSubtotalSeconds { get; set; }
+        public long? BillableSubtotalSeconds { get; set; }
+        public long? NonBillableSubtotalSeconds { get; set; }
+        public long? RemainingSubtotalSeconds { get; set; }
+        public long? ServiceTimeSubtotalEstimateSeconds { get; set; }
         public int? Ordering { get; set; }
         public int? Manager { get; set; }
         public int? Parent { get; set; }
@@ -52,5 +57,14 @@
         public long? DateTargetedDue { get; set; }
 
         public long? DateCompleted { get; set; }
+    }
+
+    public class PMMilestoneBudget
+    {
+        public long? LoggedSubtotalSeconds { get; set; }
+        public long? BillableSubtotalSeconds { get; set; }
+        public long? NonBillableSubtotalSeconds { get; set; }
+        public long? RemainingSubtotalSeconds { get; set; }
+        public long? ServiceTimeSubtotalEstimateSeconds { get; set; }
     }
 }

@@ -90,7 +90,19 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 Rate = TryParseDecimal(m.Rate),
                 RateCharged = TryParseDecimal(m.RateCharged),
 
-                MilestoneObjectBudget = m.MilestoneObjectBudget,
+                MilestoneObjectBudget = m.MilestoneObjectBudget == null ? null : new PMMilestoneBudget
+                {
+                    LoggedSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget.LoggedSubtotal),
+                    BillableSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget.BillableSubtotal),
+                    NonBillableSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget.NonBillableSubtotal),
+                    RemainingSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget.RemainingSubtotal),
+                    ServiceTimeSubtotalEstimateSeconds = TryParseLong(m.MilestoneObjectBudget.ServiceTimeSubtotalEstimate),
+                },
+                LoggedSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget?.LoggedSubtotal),
+                BillableSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget?.BillableSubtotal),
+                NonBillableSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget?.NonBillableSubtotal),
+                RemainingSubtotalSeconds = TryParseLong(m.MilestoneObjectBudget?.RemainingSubtotal),
+                ServiceTimeSubtotalEstimateSeconds = TryParseLong(m.MilestoneObjectBudget?.ServiceTimeSubtotalEstimate),
                 Ordering = TryParseIntNullable(m.Ordering),
                 Manager = TryParseIntNullable(m.Manager),
                 Parent = TryParseIntNullable(m.Parent),
