@@ -35,7 +35,6 @@ C:\Users\bwadd\Projects\pronto\Pronto.Middleware\obj\Debug\net6.0\Pronto.Middlew
 C:\Users\bwadd\Projects\pronto\Pronto.Middleware\obj\Debug\net6.0\ref\Pronto.Middleware.dll
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\appsettings.json
-C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\Pronto.Middleware.exe
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\Pronto.Middleware.deps.json
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\Pronto.Middleware.runtimeconfig.json
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\Pronto.Middleware.dll
@@ -133,3 +132,14 @@ C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\UsersbwaddAppDataLocal
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\UsersbwaddAppDataLocalTemppronto-middleware-build-check\appsettings.json
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\UsersbwaddAppDataLocalTemppronto-middleware-build-check\Pronto.Middleware.deps.json
 C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\UsersbwaddAppDataLocalTemppronto-middleware-build-check\Pronto.Middleware.runtimeconfig.json
+C:\Users\bwadd\Projects\pronto-middlware\bin\Debug\net6.0\Pronto.Middleware.exe
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\appsettings.Development.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\appsettings.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\UsersbwaddAppDataLocalTemppronto-middleware-build-check\appsettings.Development.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\UsersbwaddAppDataLocalTemppronto-middleware-build-check\appsettings.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\UsersbwaddAppDataLocalTemppronto-middleware-build-check\Pronto.Middleware.deps.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\UsersbwaddAppDataLocalTemppronto-middleware-build-check\Pronto.Middleware.runtimeconfig.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\Pronto.Middleware.deps.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\Pronto.Middleware.runtimeconfig.json
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\Pronto.Middleware.dll
+C:\Users\bwadd\AppData\Local\Temppronto-middleware-build-check\Pronto.Middleware.pdb
