@@ -25,7 +25,8 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         [JsonProperty("date_due")] public string? DateDue { get; set; }
         [JsonProperty("date_completed")] public string? DateCompleted { get; set; }
 
-        [JsonProperty("milestone_object_budget")] public string? MilestoneObjectBudget { get; set; }
+        [JsonProperty("milestone_object_budget")]
+        public MilestoneObjectBudgetResponse? MilestoneObjectBudget { get; set; }
 
         // CHANGED: was string?; now a nested object
         [JsonProperty("milestone_object_schedule")]
@@ -60,5 +61,23 @@ namespace Pronto.Middleware.Models.ProjectManagementModels
         [JsonProperty("date_targeted_due")] public string? DateTargetedDue { get; set; }
 
         [JsonProperty("date_completed")] public string? DateCompleted { get; set; }
+    }
+
+    public class MilestoneObjectBudgetResponse
+    {
+        [JsonProperty("logged_subtotal")]
+        public string? LoggedSubtotal { get; set; }
+
+        [JsonProperty("billable_subtotal")]
+        public string? BillableSubtotal { get; set; }
+
+        [JsonProperty("nonbillable_subtotal")]
+        public string? NonBillableSubtotal { get; set; }
+
+        [JsonProperty("remaining_subtotal")]
+        public string? RemainingSubtotal { get; set; }
+
+        [JsonProperty("service_time_subtotal_estimate")]
+        public string? ServiceTimeSubtotalEstimate { get; set; }
     }
 }

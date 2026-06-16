@@ -1,4 +1,4 @@
-﻿namespace Pronto.Middleware.Models.EmployeeInsights
+namespace Pronto.Middleware.Models.EmployeeInsights
 {
     /// <summary>
     /// DTO returned to frontend for tasks in Employee Insights.
@@ -22,10 +22,10 @@
 
         public string AgainstType { get; set; } = default!;
         public string AgainstId { get; set; } = default!;
+        public List<ActivityBreadcrumb>? Breadcrumbs { get; set; }
 
-        // 🆕 Fields for task card UI
-        public int Remaining { get; set; }        // Time left in minutes
-        public int Logged { get; set; }           // Logged time in minutes
-        public int ObjectBudget { get; set; }     // Total budgeted time in minutes
+        public int Remaining { get; set; }
+        public int Logged { get; set; }
+        public int ObjectBudget { get; set; }
     }
 }

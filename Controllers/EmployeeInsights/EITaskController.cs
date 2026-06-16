@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pronto.Middleware.Models;
 using Pronto.Middleware.Models.EmployeeInsights;
@@ -23,10 +23,9 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
         }
 
         [HttpGet]
-        [HttpGet]
         public async Task<ActionResult<IEnumerable<EITask>>> GetTasksAsync(
             [FromQuery] int limit = 100,
-            [FromQuery(Name = "fields")] string? fields = "id,title,description,status,standing,assignee,date_created,date_due,date_completed,billable,nonbillable,against_type,against_id,remaining,object_budget,logged",
+            [FromQuery(Name = "fields")] string? fields = "id,title,description,status,standing,assignee,date_created,date_due,date_completed,billable,nonbillable,against_type,against_id,breadcrumbs(_ALL),remaining,object_budget,logged",
             [FromQuery] string? filters = null)
 
         {
@@ -36,11 +35,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 return Unauthorized("Invalid Authorization header.");
 
             var token = headerValue.Parameter!;
-
-            // Build filter string
-            var filterString = filters;
-
-            var tasks = await FetchTasksAsync(token, limit, fields, filterString);
+            var tasks = await FetchTasksAsync(token, limit, fields, filters);
             return Ok(tasks);
         }
 
@@ -82,6 +77,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 allResponses.AddRange(batch);
                 offset += batch.Count;
             }
+
             return allResponses.Select(r => new EITask
             {
                 Id = r.Id,
@@ -97,6 +93,7 @@ namespace Pronto.Middleware.Controllers.EmployeeInsights
                 NonBillable = r.NonBillable,
                 AgainstType = r.AgainstType,
                 AgainstId = r.AgainstId,
+                Breadcrumbs = r.Breadcrumbs,
                 Remaining = r.Remaining,
                 Logged = r.Logged,
                 ObjectBudget = r.ObjectBudget

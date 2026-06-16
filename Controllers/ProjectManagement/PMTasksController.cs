@@ -13,6 +13,7 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<PMTasksController> _logger;
         private readonly string _baseUrl = "https://perbyte.api.accelo.com/api/v0/";
+        private const int MaxPageSize = 100;
 
         public PMTasksController(IHttpClientFactory httpClientFactory, ILogger<PMTasksController> logger)
         {
@@ -33,6 +34,11 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
             }
 
             var token = headerValue.Parameter;
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                return Unauthorized("Missing bearer token.");
+            }
+
             var tasks = await FetchTasksAsync(token, limit, fields, filters);
             return Ok(tasks);
         }
@@ -42,30 +48,48 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var query = $"{_baseUrl}tasks?_limit={limit}&_fields={fields}";
+            var pageSize = Math.Clamp(limit, 1, MaxPageSize);
+            var offset = 0;
+            var allTasks = new List<PMTaskResponse>();
 
-            if (!string.IsNullOrWhiteSpace(filters))
+            while (true)
             {
-                query += $"&_filters={filters}";
+                var query = $"{_baseUrl}tasks?_limit={pageSize}&_offset={offset}&_fields={fields}";
+
+                if (!string.IsNullOrWhiteSpace(filters))
+                {
+                    query += $"&_filters={filters}";
+                }
+
+                _logger.LogInformation("[FetchTasks] Requesting: {Query}", query);
+
+                var response = await client.GetAsync(query);
+                var json = await response.Content.ReadAsStringAsync();
+
+                _logger.LogInformation("[FetchTasks] Response Code: {StatusCode}", response.StatusCode);
+                _logger.LogDebug("[FetchTasks] Raw JSON: {Json}", json);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("[FetchTasks] Failed to fetch tasks from Accelo: {StatusCode} - {Json}", response.StatusCode, json);
+                    return new List<PMTask>();
+                }
+
+                var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<PMTaskResponse>>(json);
+                var pageTasks = acceloResponse?.Response ?? new List<PMTaskResponse>();
+                allTasks.AddRange(pageTasks);
+
+                if (pageTasks.Count < pageSize)
+                {
+                    break;
+                }
+
+                offset += pageSize;
             }
 
-            _logger.LogInformation("[FetchTasks] Requesting: {Query}", query);
+            _logger.LogInformation("[FetchTasks] Retrieved {TaskCount} tasks across paginated Accelo requests.", allTasks.Count);
 
-            var response = await client.GetAsync(query);
-            var json = await response.Content.ReadAsStringAsync();
-
-            _logger.LogInformation("[FetchTasks] Response Code: {StatusCode}", response.StatusCode);
-            _logger.LogDebug("[FetchTasks] Raw JSON: {Json}", json);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                _logger.LogError("[FetchTasks] Failed to fetch tasks from Accelo: {StatusCode} - {Json}", response.StatusCode, json);
-                return new List<PMTask>();
-            }
-
-            var acceloResponse = JsonConvert.DeserializeObject<AcceloApiResponse<PMTaskResponse>>(json);
-
-            return acceloResponse?.Response.Select(task => new PMTask
+            return allTasks.Select(task => new PMTask
             {
                 Id = int.Parse(task.Id),
                 Title = task.Title,

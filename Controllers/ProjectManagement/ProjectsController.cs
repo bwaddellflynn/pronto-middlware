@@ -43,6 +43,11 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 filters ??= "job_status(14,15,16,17,18,19,22)";
 
                 var accessToken = headerValue.Parameter;
+                if (string.IsNullOrWhiteSpace(accessToken))
+                {
+                    return Unauthorized("Authorization token is missing.");
+                }
+
                 var projects = await GetProjectsFromAcceloAsync(accessToken, limit, fields, filters);
                 return Ok(projects);
             }
@@ -89,7 +94,14 @@ namespace Pronto.Middleware.Controllers.ProjectManagement
                 DateCreated = long.TryParse(r.DateCreated, out var dcrt) ? dcrt : (long?)null,
                 DateStarted = long.TryParse(r.DateStarted, out var ds) ? ds : (long?)null,
                 DateDue = long.TryParse(r.DateDue, out var dd) ? dd : (long?)null,
+                LoggedSubtotalSeconds = TryParseLong(r.JobObjectBudget?.LoggedSubtotal),
+                BillableSubtotalSeconds = TryParseLong(r.JobObjectBudget?.BillableSubtotal),
+                NonBillableSubtotalSeconds = TryParseLong(r.JobObjectBudget?.NonBillableSubtotal),
+                RemainingSubtotalSeconds = TryParseLong(r.JobObjectBudget?.RemainingSubtotal),
                 ServiceTimeSubtotalEstimateSeconds = TryParseLong(r.JobObjectBudget?.ServiceTimeSubtotalEstimate),
+                LoggedSubtotalFormatted = FormatDuration(
+                    TryParseLong(r.JobObjectBudget?.LoggedSubtotal)
+                ),
                 ServiceTimeSubtotalEstimateFormatted = FormatDuration(
                     TryParseLong(r.JobObjectBudget?.ServiceTimeSubtotalEstimate)
                 )

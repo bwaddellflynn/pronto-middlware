@@ -15,7 +15,12 @@
         public long? DateCreated { get; set; }
         public long? DateStarted { get; set; }
         public long? DateDue { get; set; }
+        public long? LoggedSubtotalSeconds { get; set; }
+        public long? BillableSubtotalSeconds { get; set; }
+        public long? NonBillableSubtotalSeconds { get; set; }
+        public long? RemainingSubtotalSeconds { get; set; }
         public long? ServiceTimeSubtotalEstimateSeconds { get; set; }
+        public string? LoggedSubtotalFormatted { get; set; }
         public string? ServiceTimeSubtotalEstimateFormatted { get; set; }
     }
 }
